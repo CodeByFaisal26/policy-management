@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "worker": "node utils/scheduleWorker.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "mongoose": "^8.5.3",
     "multer": "^1.4.5-lts.1",
     "os": "^0.1.2",
+    "os-utils": "^0.0.14",
     "worker-thread": "^1.1.0",
     "xlsx": "^0.18.5"
   }
