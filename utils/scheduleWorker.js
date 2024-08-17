@@ -24,7 +24,7 @@ const startWorker = () => {
 // Connect to MongoDB and start the worker
 const connectAndStartWorker = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {
+        await mongoose.connect('mongodb+srv://Faisalpinitod:faisal@cluster0.y2f7t.mongodb.net/policyDB?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });

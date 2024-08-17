@@ -7,7 +7,7 @@ exports.searchPolicyByUsername = async (req, res) => {
         const { username } = req.query;
 
         // Find the user by username
-        const user = await User.findOne({ firstName: username });
+        const user = await User.findOne({ firstName : username });
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
