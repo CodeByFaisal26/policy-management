@@ -9,8 +9,9 @@ connectDB();
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Define routes here
-// e.g., app.use('/api/agent', require('./routes/agent'));
+// Upload route
+app.use('/api/upload', require('./routes/uploadRoute'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
