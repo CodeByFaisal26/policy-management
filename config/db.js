@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/policyDB', {
+        await mongoose.connect('mongodb+srv://Faisalpinitod:faisal@cluster0.y2f7t.mongodb.net/policyDB?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
