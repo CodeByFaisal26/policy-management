@@ -5,10 +5,8 @@ exports.scheduleMessage = async (req, res) => {
     try {
         const { message, day, time } = req.body;
 
-        // Combine the day and time to create a Date object
         const scheduledAt = new Date(`${day} ${time}`);
 
-        // Save the scheduled message to the database
         const newSchedule = new Schedule({
             message,
             scheduledAt,

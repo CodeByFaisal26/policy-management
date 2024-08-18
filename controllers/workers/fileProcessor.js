@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const csv = require('csv-parser');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
 
+
+const mongoUri = process.env.MONGO_URI;
 // MongoDB connection setup
-mongoose.connect('mongodb+srv://Faisalpinitod:faisal@cluster0.y2f7t.mongodb.net/policyDB?retryWrites=true&w=majority', {
+mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
@@ -110,5 +113,4 @@ const processFile = async (filePath) => {
         });
 };
 
-// Use workerData to get the filePath
 processFile(workerData.filePath);

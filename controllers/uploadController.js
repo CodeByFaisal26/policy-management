@@ -20,7 +20,7 @@ const upload = multer({
 const processFile = (filePath) => {
     return new Promise((resolve, reject) => {
         const worker = new Worker(path.join(__dirname, './workers/fileProcessor.js'), {
-            workerData: { filePath }  // This is where you pass the filePath to the worker
+            workerData: { filePath }  
         });
         worker.on('message', resolve);
         worker.on('error', reject);
@@ -37,10 +37,8 @@ exports.uploadFile = async (req, res) => {
         const file = req.file;
         const filePath = path.join(__dirname, '..', file.path);
 
-        // Process the file in a worker thread
         await processFile(filePath);
 
-        // Clean up the uploaded file
         fs.unlinkSync(filePath);
 
         res.status(200).json({ message: 'File processed and data uploaded successfully' });

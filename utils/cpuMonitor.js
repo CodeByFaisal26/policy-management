@@ -25,5 +25,5 @@ const restartServer = () => {
     });
 };
 
-// Monitor CPU every 10 seconds
+
 setInterval(monitorCPU, 10000);

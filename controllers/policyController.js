@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const PolicyInfo = require('../models/PolicyInfo');
 
-// Search for policy information by user's email
+
 exports.searchPolicyByusername = async (req, res) => {
     try {
         const { username } = req.query;
@@ -17,7 +17,6 @@ exports.searchPolicyByusername = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Find policies associated with the user
         const policies = await PolicyInfo.find({ user: user._id })
             .populate('policyCategoryId')
             .populate('companyId');
@@ -39,7 +38,7 @@ exports.aggregatePoliciesByUser = async (req, res) => {
         const aggregateData = await PolicyInfo.aggregate([
             {
                 $group: {
-                    _id: "$userId", // Assuming the field is `userId` in PolicyInfo
+                    _id: "$userId", 
                     totalPolicies: { $sum: 1 },
                     policies: { $push: "$$ROOT" },
                 },

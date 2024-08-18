@@ -1,30 +1,33 @@
 const Schedule = require('../models/Schedule');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-// Function to process scheduled messages
+
+const mongoUri = process.env.MONGO_URI;
+
 const processScheduledMessages = async () => {
     const now = new Date();
 
-    // Find messages that are scheduled for now or earlier
+
     const messages = await Schedule.find({ scheduledAt: { $lte: now } });
 
     messages.forEach(async (message) => {
         console.log(`Processing message: ${message.message}`);
 
-        // Remove the message after processing
+        
         await Schedule.findByIdAndDelete(message._id);
     });
 };
 
-// Function to start the worker
+
 const startWorker = () => {
-    setInterval(processScheduledMessages, 60000); // Check every minute
+    setInterval(processScheduledMessages, 60000); 
 };
 
-// Connect to MongoDB and start the worker
+
 const connectAndStartWorker = async () => {
     try {
-        await mongoose.connect('mongodb+srv://Faisalpinitod:faisal@cluster0.y2f7t.mongodb.net/policyDB?retryWrites=true&w=majority', {
+        await mongoose.connect(mongoUri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
