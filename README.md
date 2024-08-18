@@ -25,8 +25,8 @@ This project is a Node.js application designed to upload and manage policy infor
 
 1. Clone the repository:
     ```bash
-    git clone <your-repo-url>
-    cd <project-directory>
+    git clone https://github.com/CodeByFaisal26/policy-management.git
+    cd policy-management
     ```
 
 2. Install the dependencies:

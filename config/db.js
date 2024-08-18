@@ -4,7 +4,7 @@ const connectDB = async () => {
     try {
         await mongoose.connect('mongodb+srv://Faisalpinitod:faisal@cluster0.y2f7t.mongodb.net/policyDB?retryWrites=true&w=majority', {
             useNewUrlParser: true,
-            useUnifiedTopology: true,
+            useUnifiedTopology: true
         });
         console.log('MongoDB connected');
     } catch (error) {

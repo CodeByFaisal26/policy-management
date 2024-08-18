@@ -1,13 +1,17 @@
 const User = require('../models/User');
 const PolicyInfo = require('../models/PolicyInfo');
 
-// Search for policy information by username
-exports.searchPolicyByUsername = async (req, res) => {
+// Search for policy information by user's email
+exports.searchPolicyByusername = async (req, res) => {
     try {
         const { username } = req.query;
 
-        // Find the user by username
-        const user = await User.findOne({ firstName : username });
+        if (!username) {
+            return res.status(400).json({ message: 'username query parameter is required' });
+        }
+
+        // Find the user by first name
+        const user = await User.findOne({ firstName :username });
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
@@ -15,11 +19,12 @@ exports.searchPolicyByUsername = async (req, res) => {
 
         // Find policies associated with the user
         const policies = await PolicyInfo.find({ user: user._id })
-            .populate('policyCategory')
-            .populate('policyCarrier');
+            .populate('policyCategoryId')
+            .populate('companyId');
 
-        res.status(200).json({ policies });
+        res.status(200).json({ user, policies });
     } catch (error) {
+        console.error('Error in searchPolicyByFirstName:', error.message);
         res.status(500).json({ message: error.message });
     }
 };
@@ -34,7 +39,7 @@ exports.aggregatePoliciesByUser = async (req, res) => {
         const aggregateData = await PolicyInfo.aggregate([
             {
                 $group: {
-                    _id: "$user",
+                    _id: "$userId", // Assuming the field is `userId` in PolicyInfo
                     totalPolicies: { $sum: 1 },
                     policies: { $push: "$$ROOT" },
                 },

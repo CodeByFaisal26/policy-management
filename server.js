@@ -16,7 +16,7 @@ app.use('/api', require('./routes/uploadRoute'));
 app.use('/api/policy', require('./routes/policyRoute'));
 
 // Schedule routes
-app.use('/api/schedule', require('./routes/scheduleRoute'));
+app.use('/api', require('./routes/scheduleRoute'));
 
 // Start CPU monitoring
 require('./utils/cpuMonitor');

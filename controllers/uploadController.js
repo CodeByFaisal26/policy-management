@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const { Worker } = require('worker_threads');
 const multer = require('multer');
-const xlsx = require('xlsx');
 
 // Set up multer for file uploads
 const upload = multer({
@@ -20,8 +19,8 @@ const upload = multer({
 // Function to parse and process the file using worker threads
 const processFile = (filePath) => {
     return new Promise((resolve, reject) => {
-        const worker = new Worker('./workers/fileProcessor.js', {
-            workerData: { filePath }
+        const worker = new Worker(path.join(__dirname, './workers/fileProcessor.js'), {
+            workerData: { filePath }  // This is where you pass the filePath to the worker
         });
         worker.on('message', resolve);
         worker.on('error', reject);
