@@ -76,7 +76,7 @@ This project is a Node.js application designed to upload and manage policy infor
 - **Description**: Aggregate policy data by each user.
 
 ### 4. Schedule a Message
-- **Endpoint**: `/api/schedule/schedule`
+- **Endpoint**: `/api/schedule`
 - **Method**: `POST`
 - **Description**: Schedule a message to be saved in the database at a specified day and time.
 - **Body Parameters**:
@@ -97,6 +97,3 @@ To test the API endpoints, you can use tools like [Postman](https://www.postman.
 
 Please feel free to fork the project and submit pull requests. For major changes, please open an issue to discuss what you would like to change.
 
-## License
-
-This project is licensed under the MIT License.
